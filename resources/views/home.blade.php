@@ -6,6 +6,12 @@
     <title>Swaraj: Flames of Rebellion</title>
     <!-- <link rel="preload" as="image" href="image.png"> -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <style>
+        body {
+            background: url('{{ asset('images/image.jpg') }}') no-repeat center center/cover;
+        }
+    </style>
+
 </head>
 <body>
     <div class="container scale-up-top">
