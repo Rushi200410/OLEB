@@ -13,3 +13,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
+
+Route::get('/hs', function () {
+    return redirect('homestart');
+})->name('home');
