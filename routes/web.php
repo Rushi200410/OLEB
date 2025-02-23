@@ -18,6 +18,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
+Route::get('/game/start', function () {
+    return view('dashboard');
+})->middleware('auth')->name('game.start');
+
+
+
 Route::get('/hs', function () {
     return redirect('homestart');
 })->name('home');
