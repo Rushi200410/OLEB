@@ -37,4 +37,9 @@ class AuthController extends Controller
         Session::flush();
         return redirect('/login');
     }
+
+    public function home()
+    {
+        return view('/home');
+    }
 }
