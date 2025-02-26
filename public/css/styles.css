@@ -44,7 +44,7 @@ h1 {
 }
 
 button {
-    background-color: purple;
+    background-color: #800080;
     color: white;
     font-size: 1.2rem;
     padding: 10px 20px;
@@ -104,4 +104,43 @@ button:hover {
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+/* Positioning for logos */
+.logo {
+    position: absolute;
+}
+
+.logo-left {
+    top: 10px;
+    left: 10px;
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+}
+
+.logo-right {
+    top: 10px;
+    right: 10px;
+    width: 60px; /* Adjust size as needed */
+    height: auto;
+}
+
+/* Button at bottom-right corner */
+.bottom-right-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #800080;
+    color: white;
+    border: 5px solid #800080;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bottom-right-btn:hover {
+    background-color: #6a0dad;
+    border: 5px solid #6a0dad;
+
 }

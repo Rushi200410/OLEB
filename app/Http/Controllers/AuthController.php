@@ -33,10 +33,42 @@ class AuthController extends Controller
         return back()->withErrors(['loginError' => 'Invalid credentials']);
     }
 
-    public function logout()
+    // public function login(Request $request)
+    // {
+
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $user = User::where('username', $request->input('username'))->get()->first();
+
+    //     if (is_null($user)) {
+    //         $error = "Invalid username";
+    //         $data = compact('error');
+    //         echo $error;
+    //         return view('auth.login')->with($data);
+    //     }
+
+    //     if (Hash::check($request->input('password'), $user->password)) {
+    //         $request->Session()->put('user', $user->name);
+    //         $request->Session()->put('userid', $user->id);
+
+    //         return redirect(route('home'));
+
+    //     } else {
+    //         $error = "Invalid password";
+    //         $data = compact('error');
+    //         echo $error;
+    //         return view('auth.login')->with($data);
+    //     }
+    // }
+
+    public function logout(Request $request)
     {
-        Auth::logout();
-        Session::flush();
-        return redirect('/login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken(); // For added security
+
+        return redirect('login');
     }
 }

@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Session;
 
 class QuizController extends Controller
 {
+
+    public function home()
+    {
+        return view('home');
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 
     public function new_start()
     {
