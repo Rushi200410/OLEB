@@ -39,8 +39,8 @@
             position: fixed;
             top: 15%;
             bottom: 15%;
-            right: 10%;
-            width: 800px;
+            right: 5%;
+            width: 700px;
             height: 60vh;
             padding: 55px;
             background: rgba(139, 69, 19, 0.8);
@@ -57,6 +57,7 @@
         }
         .quiz-container h2 {
             margin-bottom: 50px;
+            margin-top: -5px;
             font-size: 40px;
             font-family: 'Cinzel', serif;
         }

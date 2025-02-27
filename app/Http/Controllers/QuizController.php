@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Event;
+use App\Models\Quiz;
+use App\Models\Student;
 use Session;
 
 class QuizController extends Controller
@@ -19,20 +23,46 @@ class QuizController extends Controller
         return view('dashboard');
     }
 
-    public function new_start()
+    public function new_start(Request $request)
     {
-        return view('game/levels');
+        $userid = Session::get('user_id');
+
+        // Check if a student with this user_id already exists
+        $student = Student::where('user_id', $userid)->first();
+
+        if ($student) {
+            // If the student exists, update the score and timeline to 0
+            $student->score = 0;
+            $student->timeline = 0;
+            $student->save();
+        } else {
+            // If no student exists, create a new record
+            $student = new Student();
+            $student->user_id = $userid;
+            $student->score = 0;
+            $student->timeline = 0;
+            $student->save();
+        }
+
+        // Store the student ID in the session (it will overwrite if already exists)
+        Session::put('student_id', $student->id);
+
+        return view('game.levels', ['student' => $student]);
     }
+
 
     public function video()
     {
-        // $user = Auth::user();
+        // dd(Session()->all());
+        $student = Student::where('id', Session::get('student_id'))->first();
+        $timeline = $student->timeline + 1;
+        $student->timeline = $timeline;
+        $student->save();
 
-        // $videoFilename = $user->timeline . ".mp4"; // Assuming video filenames are stored as 'timeline_value.mp4'
+        $event = Event::where('id', $timeline)->first();
+        $video = $event->video_name. ".mp4";
 
-        // $videoPath = asset('videos/' . $videoFilename);
-
-        $videoPath = asset('videos/olabs1.mp4');
+        $videoPath = asset('videos/'. $video);
 
         return view('game/video', compact('videoPath'));
     }

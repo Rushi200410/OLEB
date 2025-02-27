@@ -26,7 +26,14 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            Session::put('username', $request->username);
+
+           // Get the authenticated user
+           $user = Auth::user();
+
+           // Store user data in session
+           Session::put('username', $user->username);
+           Session::put('user_id', $user->id); // Store user ID in session
+
             return redirect()->intended('/home');
         }
 
