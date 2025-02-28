@@ -128,18 +128,49 @@
                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
             </svg>
         </a>
+
         <div class="background" id="background"></div>
         <div class="character" id="mainCharacter"></div>
         <div class="visitor" id="visitor"></div>
         <div class="quiz-container" id="quizContainer">
-            <h2>Who was the founder of the Maurya Empire?</h2>
-            <button class="quiz-option">Chandragupta Maurya</button>
-            <button class="quiz-option">Ashoka</button>
-            <button class="quiz-option">Harsha</button>
-            <button class="quiz-option">Samudragupta</button>
+            <h2>{{$quiz_question->question}}</h2>
+            <button class="quiz-option" id="option1">{{$quiz_question->option1}}</button>
+            <button class="quiz-option" id="option2">{{$quiz_question->option2}}</button>
+            <button class="quiz-option" id="option3">{{$quiz_question->option3}}</button>
+            <button class="quiz-option" id="option4">{{$quiz_question->option4}}</button>
         </div>
     </div>
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const quizOptions = document.querySelectorAll(".quiz-option");
+            const correctAnswer = {{ $quiz_question->answer }};
+
+            quizOptions.forEach((button, index) => {
+                button.addEventListener("click", function () {
+                    const selectedOption = index + 1;
+                    const isCorrect = selectedOption === correctAnswer ? 1 : 0;
+
+                    // Change button color based on correctness
+                    button.style.backgroundColor = isCorrect ? "green" : "red";
+
+                    // Disable all buttons after selection
+                    quizOptions.forEach(btn => btn.disabled = true);
+
+                    // Generate route with placeholders and replace dynamically
+                    let nextRoute = `{{ route('game.quiz.verify', ['question_no' => $quiz_question['question_no'], 'correct' => '__PLACEHOLDER__']) }}`;
+                    nextRoute = nextRoute.replace('__PLACEHOLDER__', isCorrect); // Replace with correct value
+
+                    // Redirect after 5 seconds
+                    setTimeout(() => {
+                        window.location.href = nextRoute;
+                    }, 1000);
+                });
+            });
+        });
+
+
+
         setTimeout(() => {
             document.getElementById('quizContainer').classList.add('show');
             document.getElementById('background').classList.add('darken-bg');

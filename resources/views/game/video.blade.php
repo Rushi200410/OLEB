@@ -64,12 +64,15 @@
 
         // Redirect to game.quiz when the video ends
         video.onended = function() {
-            window.location.href = "{{ route('game.quiz') }}";
+
+
+
+            window.location.href = "{{ route('game.quiz', ['question_no' => 1]) }}";
         };
 
         // Skip button function
         function skipVideo() {
-            window.location.href = "{{ route('game.quiz') }}";
+            window.location.href = "{{ route('game.quiz', ['question_no' => 1]) }}";
         }
     </script>
 

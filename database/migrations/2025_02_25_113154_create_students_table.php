@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('score')->default(0);
             $table->integer('timeline');
+            $table->integer('question')->default(1);
             $table->timestamps();
         });
     }
