@@ -15,10 +15,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/home', [QuizController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/game/continue', [QuizController::class, 'continue'])->name('continue')->middleware('auth');
 Route::get('/game/start', [QuizController::class, 'new_start'])->name('game.start')->middleware('auth');
 Route::get('/game/video', [QuizController::class, 'video'])->name('game.video')->middleware('auth');
 Route::get('/game/quiz/{question_no}', [QuizController::class, 'quiz'])->where('question_no', '[0-9]+')->name('game.quiz')->middleware('auth');
 Route::get('/game/quiz/{question_no}/{correct}', [QuizController::class, 'verify_quiz'])->where('question_no', '[0-9]+')->name('game.quiz.verify')->middleware('auth');
+Route::get('/rest', [QuizController::class, 'rest'])->where('score', '[0-9]+')->name('game.rest')->middleware('auth');
+
 
 Route::get('/dashboard', [QuizController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 

@@ -19,7 +19,7 @@
         <h1>Swaraj: Flames of Rebellion</h1>
         <div class="buttons">
             <button id="newGameBtn">New Game</button>
-            <button>Continue</button>
+        <a href="{{ route('continue') }}"><button>Continue</button></a>
             <button>Configure</button>
         </div>
     </div>
