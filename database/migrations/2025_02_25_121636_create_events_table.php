@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('q3_id')->nullable();
             $table->integer('q4_id')->nullable();
             $table->integer('q5_id')->nullable();
+            $table->integer('q6_id')->nullable();
+            $table->integer('q7_id')->nullable();
             $table->integer('points_required');
             $table->string('video_name');
             $table->integer('year');

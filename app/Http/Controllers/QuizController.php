@@ -15,7 +15,21 @@ class QuizController extends Controller
 
     public function home()
     {
-        return view('home');
+        $continue = 0;
+        if(Session::get('student_score'))
+        {
+            $continue = 0;
+            $student = Student::where('id', Session::get('student_id'))->first();
+            $event = Event::where('timeline', $student->timeline)->first();
+
+            if($event->points_required <= Session::get('student_score'))
+            {
+                $continue = 1;
+            }
+        }
+
+
+        return view('home', ['continue' => $continue]);
     }
 
     public function dashboard()
@@ -54,46 +68,38 @@ class QuizController extends Controller
     public function continue()
     {
 
-        $userid = Session::get('user_id');
+        $student = Student::where('id', Session::get('student_id'))->first();
+        $event = Event::where('timeline', $student->timeline)->first();
 
-        // Check if a student with this user_id already exists
-        $student = Student::where('user_id', $userid)->first();
+        if($event->points_required <= Session::get('student_score'))
+        {
 
-        if ($student) {
-            // If the student exists, update the score and timeline to 0
-            // $student->score = 0;
-            $student->timeline = $student->timeline + 1;
-            $student->save();
-        } else {
-            // If no student exists, create a new record
-            $student = new Student();
-            $student->user_id = $userid;
-            $student->score = 0;
-            $student->timeline = 1;
-            $student->save();
+            // Check if a student with this user_id already exists
+            $student = Student::where('user_id', Session::get('user_id'))->first();
+
+            if ($student) {
+                // If the student exists, update the score and timeline to 0
+                $student->timeline = $student->timeline + 1;
+                $student->save();
+            } else {
+                // If no student exists, create a new record
+                $student = new Student();
+                $student->user_id = $userid;
+                $student->score = 0;
+                $student->timeline = 1;
+                $student->save();
+            }
+
+            // Store the student ID in the session (it will overwrite if already exists)
+            Session::put('student_id', $student->id);
+            Session::put('student_score', $student->score);
+
+            return view('game.levels', ['student' => $student]);
         }
-
-        // Store the student ID in the session (it will overwrite if already exists)
-        Session::put('student_id', $student->id);
-        Session::put('student_score', $student->score);
-
-        return view('game.levels', ['student' => $student]);
-
-
-
-
-
-
-        // if($event->points_required <= Session::get('student_score'))
-        // {
-
-        // }
-        // else
-        // {
-        //     echo "<h3>Your Score Is Not Enough To Continue</h3>";
-        //     echo "<h1>Please Restart</h1>";
-        //     echo "<a><button href=''> Restart </button></a>";
-        // }
+        else
+        {
+            return view('restart'); // Create a restart.blade.php view file
+        }
 
     }
 
@@ -141,6 +147,10 @@ public function quiz($question_no)
 
         $quiz_question = Quiz::where('id', $question_id)->first();
         $quiz_question -> question_no = $question_no;
+// echo "<pre>";
+// print_r($timeline);
+// echo "</pre>";
+// die();
 
         return view('game/quiz', compact('quiz_question'));
     }
@@ -153,22 +163,27 @@ public function quiz($question_no)
             die();
         }
 
+        if($correct == 1)
+        {
+            $student = Student::where('id', Session::get('student_id'))->first();
+            $timeline = $student->timeline;
 
+            $event = Event::where('timeline', $timeline)->first();
+            $question_col = "q". $question_no ."_id";
+            $question_id = $event->$question_col;
 
-            if($correct == 1)
-            {
-                $student = Student::where('id', Session::get('student_id'))->first();
-                $timeline = $student->timeline;
+            $quiz_question = Quiz::where('id', $question_id)->first();
+            $student_score = Session::get('student_score') + $quiz_question->points;
 
-                $event = Event::where('timeline', $timeline)->first();
-                $question_col = "q". $question_no ."_id";
-                $question_id = $event->$question_col;
+            Session::put('student_score', $student_score);
+        }
+        else
+        {
+            $student_score = Session::get('student_score') - 1;
 
-                $quiz_question = Quiz::where('id', $question_id)->first();
-                $student_score = Session::get('student_score') + $quiz_question->points;
+            Session::put('student_score', $student_score);
+        }
 
-                Session::put('student_score', $student_score);
-            }
         if($question_no < 5)
         {
 
@@ -185,6 +200,11 @@ public function quiz($question_no)
     {
         $student_score = Session::get('student_score');
         $student = Student::find(Session::get('student_id'));
+// echo "<pre>";
+// print_r($student_score);
+// echo "</pre>";
+// die();
+
         $student->score = $student_score;
         $student->save();
 
