@@ -42,7 +42,10 @@
             right: 5%;
             width: 700px;
             height: 60vh;
-            padding: 55px;
+            padding-left: 55px;
+            padding-right: 55px;
+            padding-bottom: 55px;
+            padding-top: 40px;
             background: rgba(139, 69, 19, 0.8);
             border: 5px solid #daa520;
             border-radius: 20px;
@@ -55,12 +58,61 @@
         .quiz-container.show {
             visibility: visible;
         }
-        .quiz-container h2 {
-            margin-bottom: 50px;
-            margin-top: -5px;
-            font-size: 40px;
+
+        /* Question Styling (Ellipsis + Popup) */
+        .quiz-question {
+            font-size: 32px;
             font-family: 'Cinzel', serif;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Show 2 lines before cutting */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
         }
+        .quiz-question:hover {
+            text-decoration: underline;
+        }
+
+        /* Popup for full question */
+        .full-question-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            max-width: 80%;
+            text-align: center;
+            z-index: 1000;
+        }
+        .full-question-popup.active {
+            display: block;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .popup-overlay.active {
+            display: block;
+        }
+
+        /* Option Buttons (Auto-Scaling Font) */
         .quiz-option {
             display: block;
             width: 100%;
@@ -68,16 +120,19 @@
             margin: 20px 0;
             background: #daa520;
             border: 5px solid #b8840b;
-            color: rgb(0, 0, 0);
-            font-size: 18px;
+            color: black;
+            font-size: 24px;
             cursor: pointer;
             border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s ease;
         }
         .quiz-option:hover {
             background: #b8860b;
             border: 5px solid #daa520;
         }
 
+        /* Keyframe Animations */
         @keyframes slide-right {
             0% {
                 transform: translateX(0);
@@ -96,85 +151,72 @@
                 visibility: visible;
             }
         }
-
-        .home-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 50%;
-            /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); */
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-            visibility: visible;
-        }
-
-        .home-button:hover {
-            background: rgba(255, 255, 255, 1);
-            color: #000
-        }
-
-        .home-button i {
-            font-size: 24px;
-            color: #333;
-        }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <a href="{{ route('home') }}" class="home-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-            </svg>
-        </a>
-
         <div class="background" id="background"></div>
         <div class="character" id="mainCharacter"></div>
-        <div class="visitor" id="visitor"></div>
         <div class="quiz-container" id="quizContainer">
-            <h2>{{$quiz_question->question}}</h2>
+            <!-- Question with ellipsis -->
+            <h2 class="quiz-question" id="questionText">{{$quiz_question->question}}</h2>
+
+            <!-- Options -->
             <button class="quiz-option" id="option1">{{$quiz_question->option1}}</button>
             <button class="quiz-option" id="option2">{{$quiz_question->option2}}</button>
             <button class="quiz-option" id="option3">{{$quiz_question->option3}}</button>
             <button class="quiz-option" id="option4">{{$quiz_question->option4}}</button>
         </div>
     </div>
+
+    <!-- Popup for Full Question -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="full-question-popup" id="fullQuestionPopup">
+        <p id="fullQuestionText"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
     <script>
-
         document.addEventListener("DOMContentLoaded", function () {
-            const quizOptions = document.querySelectorAll(".quiz-option");
-            const correctAnswer = {{ $quiz_question->answer }};
+            // Show Quiz Container After Delay
+            setTimeout(() => {
+                document.getElementById('quizContainer').classList.add('show');
+                document.getElementById('background').classList.add('darken-bg');
+            }, 2500);
 
-            quizOptions.forEach((button, index) => {
-                button.addEventListener("click", function () {
-                    const selectedOption = index + 1;
-                    const isCorrect = selectedOption === correctAnswer ? 1 : 0;
+            // Handle Question Ellipsis & Popup
+            const questionElement = document.getElementById("questionText");
+            const popup = document.getElementById("fullQuestionPopup");
+            const popupOverlay = document.getElementById("popupOverlay");
+            const fullQuestionText = document.getElementById("fullQuestionText");
 
-                    // Change button color based on correctness
-                    button.style.backgroundColor = isCorrect ? "green" : "red";
-
-                    // Disable all buttons after selection
-                    quizOptions.forEach(btn => btn.disabled = true);
-
-                    // Generate route with placeholders and replace dynamically
-                    let nextRoute = `{{ route('game.quiz.verify', ['question_no' => $quiz_question['question_no'], 'correct' => '__PLACEHOLDER__']) }}`;
-                    nextRoute = nextRoute.replace('__PLACEHOLDER__', isCorrect); // Replace with correct value
-
-                    // Redirect after 5 seconds
-                    setTimeout(() => {
-                        window.location.href = nextRoute;
-                    }, 1000);
-                });
+            questionElement.addEventListener("click", function () {
+                fullQuestionText.textContent = questionElement.textContent;
+                popup.classList.add("active");
+                popupOverlay.classList.add("active");
             });
+
+            popupOverlay.addEventListener("click", closePopup);
         });
 
+        function closePopup() {
+            document.getElementById("fullQuestionPopup").classList.remove("active");
+            document.getElementById("popupOverlay").classList.remove("active");
+        }
 
+        // Auto-Scaling Font for Options
+        function adjustFontSize(button) {
+            let fontSize = 24;
+            button.style.fontSize = `${fontSize}px`;
 
-        setTimeout(() => {
-            document.getElementById('quizContainer').classList.add('show');
-            document.getElementById('background').classList.add('darken-bg');
-        }, 2500);
+            while (button.scrollHeight > 50 && fontSize > 16) {
+                fontSize -= 2;
+                button.style.fontSize = `${fontSize}px`;
+            }
+        }
+
+        const optionButtons = document.querySelectorAll(".quiz-option");
+        optionButtons.forEach(button => adjustFontSize(button));
     </script>
 </body>
 </html>
