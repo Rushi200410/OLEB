@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -24,18 +26,57 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            Session::put('username', $request->username);
+
+           // Get the authenticated user
+           $user = Auth::user();
+
+           // Store user data in session
+           Session::put('username', $user->username);
+           Session::put('user_id', $user->id); // Store user ID in session
+
             return redirect()->intended('/home');
         }
 
         return back()->withErrors(['loginError' => 'Invalid credentials']);
     }
 
-    public function logout()
+    // public function login(Request $request)
+    // {
+
+    //     $request->validate([
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $user = User::where('username', $request->input('username'))->get()->first();
+
+    //     if (is_null($user)) {
+    //         $error = "Invalid username";
+    //         $data = compact('error');
+    //         echo $error;
+    //         return view('auth.login')->with($data);
+    //     }
+
+    //     if (Hash::check($request->input('password'), $user->password)) {
+    //         $request->Session()->put('user', $user->name);
+    //         $request->Session()->put('userid', $user->id);
+
+    //         return redirect(route('home'));
+
+    //     } else {
+    //         $error = "Invalid password";
+    //         $data = compact('error');
+    //         echo $error;
+    //         return view('auth.login')->with($data);
+    //     }
+    // }
+
+    public function logout(Request $request)
     {
-        Auth::logout();
-        Session::flush();
-        return redirect('/login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken(); // For added security
+
+        return redirect('login');
     }
 
     public function home()

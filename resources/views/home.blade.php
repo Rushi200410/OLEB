@@ -12,11 +12,20 @@
     </style>
 </head>
 <body>
+
+    <!-- Logos -->
+    <img src="{{ asset('images/oleb_logo.png') }}" class="logo logo-left" alt="Left Logo">
+    <img src="{{ asset('images/cbsc_logo.png') }}" class="logo logo-right" alt="Right Logo">
     <div class="container">
         <h1>Swaraj: Flames of Rebellion</h1>
         <div class="buttons">
-            <button id="newGameBtn">New Game</button>
-            <button>Continue</button>
+
+            @if($continue == 0)
+                <button id="newGameBtn">Start Game</button>
+            @else
+                <button id="newGameBtn">New Game</button>
+                <a href="{{ route('continue') }}"><button>Continue</button></a>
+            @endif
             <button>Configure</button>
         </div>
     </div>
@@ -30,6 +39,9 @@
             <button id="closeModal">OK</button>
         </div>
     </div>
+
+    <!-- Bottom Right Button -->
+    <a class="bottom-right-btn" href="{{ route('logout') }}" onclick="alert('Do you really want to LogOut')">LogOut</a>
 
     <script>
         document.getElementById("newGameBtn").addEventListener("click", function() {
