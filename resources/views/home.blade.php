@@ -20,12 +20,12 @@
         <h1>Swaraj: Flames of Rebellion</h1>
         <div class="buttons">
 
-            @if($continue == 0)
+            {{-- @if($continue == 0)
                 <button id="newGameBtn">Start Game</button>
-            @else
+            @else --}}
                 <button id="newGameBtn">New Game</button>
                 <a href="{{ route('continue') }}"><button>Continue</button></a>
-            @endif
+            {{-- @endif --}}
             <button>Configure</button>
         </div>
     </div>

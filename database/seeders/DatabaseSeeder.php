@@ -22,8 +22,30 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        $user2 = User::factory()->create([
+            'name' => 'Test User2',
+            'username' => 'admin2',
+            'email' => 'test@example.com',
+        ]);
+        $user2 = User::factory()->create([
+            'name' => 'Test User3',
+            'username' => 'admin3',
+            'email' => 'test@example.com',
+        ]);
+
         // Insert a quiz question
-        $quiz = Quiz::create([
+        $quiz11 = Quiz::create([
+            'question' => 'What was the primary method of mass agitation introduced by Mahatma Gandhi in South Africa?',
+            'option1' => 'Armed rebellion',
+            'option2' => 'Satyagraha',
+            'option3' => 'Boycott',
+            'option4' => 'Civil disobedience',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+
+        $quiz12 = Quiz::create([
             'question' => 'What does the term "Satyagraha" emphasize?',
             'option1' => 'The use of physical force',
             'option2' => 'The power of truth and non-violence',
@@ -34,6 +56,86 @@ class DatabaseSeeder extends Seeder
             'points' => 3,
         ]);
 
+        $quiz13 = Quiz::create([
+            'question' => 'Where did Mahatma Gandhi first organize a Satyagraha movement in India?',
+            'option1' => 'Kheda',
+            'option2' => 'Champaran',
+            'option3' => 'Ahmedabad',
+            'option4' => 'Amritsar',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz14 = Quiz::create([
+            'question' => 'What was the main issue in the Kheda Satyagraha?',
+            'option1' => 'Oppressive plantation system',
+            'option2' => 'Non-payment of revenue due to crop failure',
+            'option3' => 'Low wages for cotton mill workers',
+            'option4' => 'Forced recruitment in the army',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz15 = Quiz::create([
+            'question' => 'What was the outcome of the Ahmedabad Satyagraha?',
+            'option1' => 'The workers got a pay raise',
+            'option2' => 'The plantation system was abolished',
+            'option3' => 'The revenue collection was relaxed',
+            'option4' => 'The workers went on strike',
+            'answer' => 1,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz = Quiz::create([
+            'question' => '',
+            'option1' => '',
+            'option2' => '',
+            'option3' => '',
+            'option4' => '',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz = Quiz::create([
+            'question' => '',
+            'option1' => '',
+            'option2' => '',
+            'option3' => '',
+            'option4' => '',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz = Quiz::create([
+            'question' => '',
+            'option1' => '',
+            'option2' => '',
+            'option3' => '',
+            'option4' => '',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz = Quiz::create([
+            'question' => '',
+            'option1' => '',
+            'option2' => '',
+            'option3' => '',
+            'option4' => '',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
+        $quiz = Quiz::create([
+            'question' => '',
+            'option1' => '',
+            'option2' => '',
+            'option3' => '',
+            'option4' => '',
+            'answer' => 2,
+            'timeline' => 1,
+            'points' => 3,
+        ]);
         // Insert an event
         $event = Event::create([
             'timeline' => 1,
