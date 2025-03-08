@@ -11,18 +11,6 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-<<<<<<< HEAD
-// Route::get('/home', [AuthController::class, 'home']);
-Route::get('/home', function () {
-    return view('home');
-})->middleware('auth');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
-=======
->>>>>>> c095fac8ea9a3623587c3f9747922b3cba3eb96f
-
 
 
 Route::get('/home', [QuizController::class, 'home'])->name('home')->middleware('auth');
