@@ -23,6 +23,9 @@ return new class extends Migration
             $table->integer('q7_id')->nullable();
             $table->integer('points_required');
             $table->string('video_name');
+            $table->string('char_name');
+            $table->string('side_char_name');
+            $table->string('bg_name');
             $table->integer('year');
             $table->timestamps();
         });

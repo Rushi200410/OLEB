@@ -21,7 +21,6 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('{{ asset('images/fountain.jpg') }}') no-repeat center center/cover;
             transition: filter 1s ease-in-out;
         }
         .darken-bg {
@@ -31,7 +30,6 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: url('{{ asset('images/main-character.png') }}') no-repeat center center/contain;
             left: -20%;
             animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
         }
@@ -166,8 +164,9 @@
             </svg>
         </a>
 
-        <div class="background" id="background"></div>
-        <div class="character" id="mainCharacter"></div>
+        <div class="background" style="background: url('{{ asset("images/" . $quiz_question->bg_name) }}') no-repeat center center/cover;" id="background"></div>
+        <div class="character" style="background: url('{{ asset("images/" . $quiz_question->char_name . ".png") }}') no-repeat center center/contain;" id="mainCharacter"></div>
+
         <div class="quiz-container" id="quizContainer">
             <h2 id="questionText">{{$quiz_question->question}}</h2>
             <button class="quiz-option" id="option1">{{$quiz_question->option1}}</button>
@@ -185,6 +184,10 @@
     </div>
 
     <script>
+        console.log('Main character image:', '{{ asset("images/" . $quiz_question->char_name . ".png") }}');
+        console.log('Background image:', '{{ asset("images/" . $quiz_question->bg_name) }}');
+        
+
         document.addEventListener("DOMContentLoaded", function () {
             const quizOptions = document.querySelectorAll(".quiz-option");
             const correctAnswer = {{ $quiz_question->answer }};

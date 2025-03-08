@@ -353,6 +353,9 @@ class DatabaseSeeder extends Seeder
             'q7_id' => 7,
             'points_required' => 0,
             'video_name' => 'olabs1',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'fountain.jpg',
             'year' => 1947,
         ]);
 
@@ -367,6 +370,9 @@ class DatabaseSeeder extends Seeder
             'q7_id' => 14,
             'points_required' => 13,
             'video_name' => 'olabs2',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'fountain.jpg',
             'year' => 1947,
         ]);
 
@@ -381,6 +387,9 @@ class DatabaseSeeder extends Seeder
             'q7_id' => 21,
             'points_required' => 26,
             'video_name' => 'olabs3',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'fountain.jpg',
             'year' => 1947,
         ]);
 
@@ -395,6 +404,9 @@ class DatabaseSeeder extends Seeder
             'q7_id' => 28,
             'points_required' => 39,
             'video_name' => 'olabs4',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'fountain.jpg',
             'year' => 1947,
         ]);
 

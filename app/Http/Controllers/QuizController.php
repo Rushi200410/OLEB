@@ -66,12 +66,14 @@ class QuizController extends Controller
             $student->save();
         }
 
+        $event = Event::where('timeline', $student->timeline)->first();
+
         // Store the student ID in the session (it will overwrite if already exists)
         Session::put('student_id', $student->id);
         Session::put('student_score', $student->score);
         Session::put('student_timeline', $student->timeline);
 
-        return view('game.levels', ['student' => $student]);
+        return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
     }
 
     public function continue()
@@ -104,11 +106,12 @@ class QuizController extends Controller
             Session::put('student_score', $student->score);
             Session::put('student_timeline', $student->timeline);
 
-            return view('game.levels', ['student' => $student]);
+            // return view('game.levels', ['student' => $student]);
+            return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
         }
         else
         {
-            return view('restart'); // Create a restart.blade.php view file
+            return view('restart', ['char_name' => $event->char_name]); // Create a restart.blade.php view file
         }
 
     }
@@ -143,6 +146,8 @@ public function quiz($question_no)
 
         $quiz_question = Quiz::where('id', $question_id)->first();
         $quiz_question -> question_no = $question_no;
+        $quiz_question -> char_name = $event->char_name;
+        $quiz_question -> bg_name = $event->bg_name;
 
 // echo "<pre>";
 // print_r($timeline);
@@ -206,7 +211,10 @@ public function quiz($question_no)
         $student->score = $student_score;
         $student->save();
 
-        return view('game.rest', ['score' => $student_score]);
+        $event = Event::where('timeline', $student->timeline)->first();
+
+
+        return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
     }
 
 }
