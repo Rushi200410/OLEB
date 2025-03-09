@@ -21,7 +21,6 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('{{ asset('images/fountain.jpg') }}') no-repeat center center/cover;
             transition: filter 1s ease-in-out;
         }
         .darken-bg {
@@ -31,7 +30,6 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: url('{{ asset('images/main-character.png') }}') no-repeat center center/contain;
             left: -20%;
             animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
         }
@@ -160,14 +158,15 @@
 </head>
 <body>
     <div class="game-container">
-        <a href="{{ route('home') }}" class="home-button">
+        <a href="{{ route('home', ['dec_timeline' => 1]) }}" class="home-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
             </svg>
         </a>
 
-        <div class="background" id="background"></div>
-        <div class="character" id="mainCharacter"></div>
+        <div class="background" style="background: url('{{ asset("images/" . $quiz_question->bg_name) }}') no-repeat center center/cover;" id="background"></div>
+        <div class="character" style="background: url('{{ asset("images/" . $quiz_question->char_name . ".png") }}') no-repeat center center/contain;" id="mainCharacter"></div>
+
         <div class="quiz-container" id="quizContainer">
             <h2 id="questionText">{{$quiz_question->question}}</h2>
             <button class="quiz-option" id="option1">{{$quiz_question->option1}}</button>
@@ -185,6 +184,10 @@
     </div>
 
     <script>
+        console.log('Main character image:', '{{ asset("images/" . $quiz_question->char_name . ".png") }}');
+        console.log('Background image:', '{{ asset("images/" . $quiz_question->bg_name) }}');
+        
+
         document.addEventListener("DOMContentLoaded", function () {
             const quizOptions = document.querySelectorAll(".quiz-option");
             const correctAnswer = {{ $quiz_question->answer }};

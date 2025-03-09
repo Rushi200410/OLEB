@@ -13,7 +13,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/home', [QuizController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/home/{dec_timeline?}', [QuizController::class, 'home'])->where('dec_timeline', '[0-9]+')->name('home')->middleware('auth');
 Route::get('/game/continue', [QuizController::class, 'continue'])->name('continue')->middleware('auth');
 Route::get('/game/start', [QuizController::class, 'new_start'])->name('game.start')->middleware('auth');
 Route::get('/game/video', [QuizController::class, 'video'])->name('game.video')->middleware('auth');

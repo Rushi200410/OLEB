@@ -13,13 +13,20 @@ use Session;
 class QuizController extends Controller
 {
 
-    public function home()
+    public function home($dec_timeline = 0)
     {
+
         $continue = 0;
         if(Session::get('student_score'))
         {
             $continue = 0;
             $student = Student::where('id', Session::get('student_id'))->first();
+            if($dec_timeline == 1)
+            {
+                $student->timeline = $student->timeline - 1;
+                $student->save();
+            }
+
             $event = Event::where('timeline', $student->timeline)->first();
 
             if($event->points_required <= Session::get('student_score'))
@@ -27,6 +34,7 @@ class QuizController extends Controller
                 $continue = 1;
             }
         }
+
 
 
         return view('home', ['continue' => $continue]);
@@ -58,11 +66,14 @@ class QuizController extends Controller
             $student->save();
         }
 
+        $event = Event::where('timeline', $student->timeline)->first();
+
         // Store the student ID in the session (it will overwrite if already exists)
         Session::put('student_id', $student->id);
         Session::put('student_score', $student->score);
+        Session::put('student_timeline', $student->timeline);
 
-        return view('game.levels', ['student' => $student]);
+        return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
     }
 
     public function continue()
@@ -79,7 +90,7 @@ class QuizController extends Controller
 
             if ($student) {
                 // If the student exists, update the score and timeline to 0
-                $student->timeline = $student->timeline;
+                $student->timeline = $student->timeline + 1;
                 $student->save();
             } else {
                 // If no student exists, create a new record
@@ -93,30 +104,22 @@ class QuizController extends Controller
             // Store the student ID in the session (it will overwrite if already exists)
             Session::put('student_id', $student->id);
             Session::put('student_score', $student->score);
+            Session::put('student_timeline', $student->timeline);
 
-            return view('game.levels', ['student' => $student]);
+            // return view('game.levels', ['student' => $student]);
+            return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
         }
         else
         {
-            return view('restart'); // Create a restart.blade.php view file
+            return view('restart', ['char_name' => $event->char_name]); // Create a restart.blade.php view file
         }
 
     }
 
     public function video()
     {
-        // dd(Session()->all());
-        $student = Student::where('id', Session::get('student_id'))->first();
-        $timeline = $student->timeline;
-// echo "<pre>";
-// print_r($timeline);
-// echo "</pre>";
-// die();
-        $event = Event::where('timeline', $timeline)->first();
-
-        $student->timeline = $timeline;
-        $student->save();
-
+    // dd(Session()->all());
+        $event = Event::where('timeline', Session::get('student_timeline'))->first();
 // echo "<pre>";
 // print_r($event);
 // echo "</pre>";
@@ -131,22 +134,21 @@ class QuizController extends Controller
 public function quiz($question_no)
     {
         // dd(Session()->all());
-        if($question_no > 5 || $question_no < 0)
+        if($question_no > 7 || $question_no < 0)
         {
             echo "Don't alter the URL";
             die();
         }
 
-        $student = Student::where('id', Session::get('student_id'))->first();
-
-        $timeline = $student->timeline;
-
-        $event = Event::where('timeline', $timeline)->first();
+        $event = Event::where('timeline', Session::get('student_timeline'))->first();
         $question_col = "q". $question_no ."_id";
         $question_id = $event->$question_col;
 
         $quiz_question = Quiz::where('id', $question_id)->first();
         $quiz_question -> question_no = $question_no;
+        $quiz_question -> char_name = $event->char_name;
+        $quiz_question -> bg_name = $event->bg_name;
+
 // echo "<pre>";
 // print_r($timeline);
 // echo "</pre>";
@@ -157,7 +159,7 @@ public function quiz($question_no)
 
     public function verify_quiz($question_no, $correct)
     {
-        if($question_no > 5 || $question_no < 0 || $correct > 1 || $correct < 0)
+        if($question_no > 7 || $question_no < 0 || $correct > 1 || $correct < 0)
         {
             echo "Don't alter the URL";
             die();
@@ -168,7 +170,8 @@ public function quiz($question_no)
             $student = Student::where('id', Session::get('student_id'))->first();
             $timeline = $student->timeline;
 
-            $event = Event::where('timeline', $timeline)->first();
+
+            $event = Event::where('timeline', Session::get('student_timeline'))->first();
             $question_col = "q". $question_no ."_id";
             $question_id = $event->$question_col;
 
@@ -184,7 +187,7 @@ public function quiz($question_no)
             Session::put('student_score', $student_score);
         }
 
-        if($question_no < 5)
+        if($question_no < 7)
         {
 
             $question_no++;
@@ -208,7 +211,10 @@ public function quiz($question_no)
         $student->score = $student_score;
         $student->save();
 
-        return view('game.rest', ['score' => $student_score]);
+        $event = Event::where('timeline', $student->timeline)->first();
+
+
+        return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
     }
 
 }

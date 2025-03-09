@@ -13,13 +13,11 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: url('{{ asset('images/fountain.jpg') }}') no-repeat center center/cover;
         }
         .character {
             position: absolute;
             width: 80px;
             height: 80px;
-            background: url('{{ asset('images/main-character.png') }}') no-repeat center center/contain;
             bottom: 58%;
             left: 28%;
             transition: transform 2s linear;
@@ -36,7 +34,6 @@
             position: absolute;
             width: 80px;
             height: 80px;
-            background: url('{{ asset('images/side-character.png') }}') no-repeat center center/contain;
             bottom: 0;
             left: 100%;
             cursor: pointer;
@@ -90,17 +87,22 @@
 </head>
 <body>
 
-    <div class="game-container">
-        <a href="{{ route('home') }}" class="home-button">
+    <div class="game-container" style="background: url('{{ asset("images/$bg_name") }}') no-repeat center center/cover;">
+        <a href="{{ route('home', ['dec_timeline' => 1]) }}" class="home-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                 <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
             </svg>
         </a>
-        <div class="character" id="mainCharacter"></div>
-        <div class="visitor" id="visitor"></div>
+        <div class="character" id="mainCharacter" style="background: url('{{ asset("images/$char_name.png") }}') no-repeat center center/contain;"></div>
+        <div class="visitor" id="visitor" style="background: url('{{ asset("images/$side_char_name") }}') no-repeat center center/contain;"></div>
     </div>
 
     <script>
+        console.log('Main character image:', '{{ asset("images/$char_name.png") }}');
+        console.log('Alternate character image:', '{{ asset("images/$char_name" . "2.png") }}');
+        console.log('Visitor image:', '{{ asset("images/$side_char_name") }}');
+
+        
         document.addEventListener("DOMContentLoaded", () => {
             let visitor = document.getElementById("visitor");
             let character = document.getElementById("mainCharacter");
@@ -108,15 +110,16 @@
             // Start visitor walking
             visitor.classList.add("walking");
 
-            // Image switching logic (Every 1.5 sec)
+            // ✅ Fix: Pass URLs properly
             let images = [
-                "{{ asset('images/main-character.png') }}",
-                "{{ asset('images/rest2.png') }}"
+                "{{ asset("images/$char_name.png") }}",
+                "{{ asset("images/$char_name" . "2.png") }}"  // Fix concatenation
             ];
+
             let index = 0;
             let imageSwitchInterval = setInterval(() => {
                 index = (index + 1) % images.length;
-                character.style.backgroundImage = `url(${images[index]})`;
+                character.style.backgroundImage = `url('${images[index]}')`;
             }, 1800);
 
             // Stop animation when visitor reaches the position (after 8 seconds)
