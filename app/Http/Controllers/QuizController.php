@@ -35,8 +35,6 @@ class QuizController extends Controller
             }
         }
 
-
-
         return view('home', ['continue' => $continue]);
     }
 
@@ -213,8 +211,14 @@ public function quiz($question_no)
 
         $event = Event::where('timeline', $student->timeline)->first();
 
-
-        return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
+        if($student->timeline > 4)
+        {
+            return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
+        }
+        else
+        {
+            return redirect(route('home'));
+        }
     }
 
 }
