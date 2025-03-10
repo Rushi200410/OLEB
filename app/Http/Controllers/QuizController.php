@@ -228,7 +228,7 @@ public function quiz($question_no)
 
         if($student->timeline < 5)
         {
-            return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
+            return view('game.rest', ['timeline' => $student->timeline, 'score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
         }
         else
         {
