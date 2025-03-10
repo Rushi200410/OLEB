@@ -18,15 +18,13 @@
             position: absolute;
             width: 80px;
             height: 80px;
-            bottom: 58%;
-            left: 28%;
             transition: transform 2s linear;
             animation: resting 4s infinite ease-in-out;
         }
 
         /* Breathing animation */
         @keyframes resting {
-            0%, 100% { transform: translateX(10) translateY(-10); }
+            0%, 100% { transform: translateX(10px) translateY(-10px); }
             50% { transform: translateX(-10px) translateY(10px); }
         }
 
@@ -40,27 +38,43 @@
             pointer-events: none;
         }
 
-        .walking {
-            animation: walk 8s linear forwards;
+        /* Different Walk Animations for Each Timeline */
+        @keyframes walk-1 {
+            0% { left: 100%; bottom: 5%; }
+            40% { left: 56%; bottom: 54.5%; }
+            75% { left: 30%; bottom: 25%; }
+            95% { left: 17%; bottom: 45%; }
+            100% { left: 23%; bottom: 49.5%; }
         }
 
-        @keyframes walk {
-            0% { left: 100%; bottom: 5%; }
-            5% { left: 96%; bottom: 0%; }
-            10% { left: 90%; bottom: 2%; }
+        @keyframes walk-2 {
+            0% { left: 30%; bottom: 0%; }
+            5% { left: 35%; bottom: 8%; }
+            30% { left: 15%; bottom: 35%; }
+            50% { left: 30%; bottom: 53%; }
+            60% { left: 23%; bottom: 63%; }
+            75% { left: 40%; bottom: 68%; }
+            100% { left: 62%; bottom: 57%; }
+        }
+
+        @keyframes walk-3 {
+            0% { left: 80%; bottom: 0%; }
             20% { left: 80%; bottom: 10%; }
-            30% { left: 70%; bottom: 20%; }
-            40% { left: 60%; bottom: 30%; }
-            50% { left: 60%; bottom: 40%; }
-            55% { left: 58%; bottom: 45%; }
-            60% { left: 55%; bottom: 50%; }
-            65% { left: 52%; bottom: 56%; }
-            70% { left: 50%; bottom: 55%; }
-            75% { left: 45%; bottom: 54%; }
-            80% { left: 43%; bottom: 53%; }
-            85% { left: 40%; bottom: 52%; }
-            90% { left: 35%; bottom: 51%; }
-            100% { left: 30%; bottom: 55%; }
+            95% { left: 45%; bottom: 55%; }
+            100% { left: 43%; bottom: 60%; }
+        }
+
+        @keyframes walk-4 {
+            0% { left: 62%; bottom: 70%; }
+            10% { left: 61%; bottom: 60%; }
+            100% { left: 40%; bottom: 4%; }
+        }
+
+        @keyframes walk-5 {
+            0% { left: 30%; bottom: 0%; }
+            7% { left: 28%; bottom: 5%; }
+            80% { left: 52%; bottom: 40%; }
+            100% { left: 45%; bottom: 50%; }
         }
 
         .home-button {
@@ -98,38 +112,33 @@
     </div>
 
     <script>
-        console.log('Main character image:', '{{ asset("images/$char_name.png") }}');
-        console.log('Alternate character image:', '{{ asset("images/$char_name" . "2.png") }}');
-        console.log('Visitor image:', '{{ asset("images/$side_char_name") }}');
-
-        
         document.addEventListener("DOMContentLoaded", () => {
             let visitor = document.getElementById("visitor");
             let character = document.getElementById("mainCharacter");
+            let timeline = {{ $timeline }};  // Get timeline from Laravel
 
-            // Start visitor walking
-            visitor.classList.add("walking");
+            let characterPositions = {
+                1: { left: "26%", bottom: "52%" },
+                2: { left: "65%", bottom: "57%" },
+                3: { left: "45.5%", bottom: "63%" },
+                4: { left: "37%", bottom: "3%" },
+                5: { left: "42%", bottom: "53%" }
+            };
 
-            // ✅ Fix: Pass URLs properly
-            let images = [
-                "{{ asset("images/$char_name.png") }}",
-                "{{ asset("images/$char_name" . "2.png") }}"  // Fix concatenation
-            ];
+            let charPos = characterPositions[timeline] || { left: "28%", bottom: "58%" };
+            character.style.left = charPos.left;
+            character.style.bottom = charPos.bottom;
 
-            let index = 0;
-            let imageSwitchInterval = setInterval(() => {
-                index = (index + 1) % images.length;
-                character.style.backgroundImage = `url('${images[index]}')`;
-            }, 1800);
+            let animationClass = timeline ? `walk-${timeline}` : "";  // Apply animation if timeline is set
 
-            // Stop animation when visitor reaches the position (after 8 seconds)
+            if (animationClass) {
+                visitor.style.animation = `${animationClass} 8s linear forwards`;
+            }
+
             setTimeout(() => {
                 alert("A visitor has arrived! Time for a quiz.");
 
-                // Stop animations
                 character.style.animation = "none";  // Stop breathing effect
-                clearInterval(imageSwitchInterval);  // Stop image switching
-
                 // Enable clicking on visitor
                 visitor.style.pointerEvents = "auto";
                 visitor.addEventListener("click", () => {

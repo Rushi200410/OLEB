@@ -36,11 +36,11 @@ class DatabaseSeeder extends Seeder
         // Insert a quiz question
         $quiz11 = Quiz::create([
             'question' => 'What was the primary method of mass agitation introduced by Mahatma Gandhi in South Africa?',
-            'option1' => 'Armed rebellion',
-            'option2' => 'Satyagraha',
+            'option1' => 'Satyagraha',
+            'option2' => 'Armed rebellion',
             'option3' => 'Boycott',
             'option4' => 'Civil disobedience',
-            'answer' => 2,
+            'answer' => 1,
             'timeline' => 1,
             'points' => 3,
         ]);
@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
         $quiz12 = Quiz::create([
             'question' => 'What does the term "Satyagraha" emphasize?',
             'option1' => 'The use of physical force',
-            'option2' => 'The power of truth and non-violence',
-            'option3' => 'The need for armed struggle',
+            'option2' => 'The need for armed struggle',
+            'option3' => 'The power of truth and non-violence',
             'option4' => 'The importance of economic sanctions',
-            'answer' => 2,
+            'answer' => 3,
             'timeline' => 1,
             'points' => 3,
         ]);
@@ -89,10 +89,10 @@ class DatabaseSeeder extends Seeder
         $quiz16 = Quiz::create([
             'question' => 'What was the key principle behind Mahatma Gandhi’s concept of Satyagraha?',
             'option1' => 'Use of physical force',
-            'option2' => 'Non-violent resistance',
+            'option2' => 'Military revolution',
             'option3' => 'Economic warfare',
-            'option4' => 'Military revolution',
-            'answer' => 2,
+            'option4' => 'Non-violent resistance',
+            'answer' => 4,
             'timeline' => 1,
             'points' => 3,
         ]);
