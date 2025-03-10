@@ -251,90 +251,167 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $quiz41 = Quiz::create([
-            'question' => 'How did nationalism spread among Indians during the freedom movement?',
-            'option1' => 'Through military victories',
-            'option2' => 'Through common cultural symbols and experiences',
-            'option3' => 'By enforcing a single language',
-            'option4' => 'By British encouragement',
+            'question' => 'What was the main symbol used by Mahatma Gandhi to unite the nation during the Civil Disobedience Movement?',
+            'option1' => 'Khadi',
+            'option2' => 'Salt',
+            'option3' => 'Spinning wheel',
+            'option4' => 'Tricolour flag',
             'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz42 = Quiz::create([
-            'question' => 'Which novel by Bankim Chandra Chattopadhyay included the song "Vande Mataram"?',
-            'option1' => 'Gitanjali',
-            'option2' => 'Anandamath',
-            'option3' => 'Hind Swaraj',
-            'option4' => 'Discovery of India',
-            'answer' => 2,
+            'question' => 'What was the main reason for the British government\'s brutal repression during the Civil Disobedience Movement?',
+            'option1' => 'To suppress the movement',
+            'option2' => 'To negotiate with the Congress',
+            'option3' => 'To gain support from the people',
+            'option4' => 'To abolish the salt tax',
+            'answer' => 1,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz43 = Quiz::create([
-            'question' => 'What was the significance of the Bharat Mata image in nationalism?',
-            'option1' => 'It was used for religious purposes only',
-            'option2' => 'It symbolized unity and national pride',
-            'option3' => 'It was created to support British rule',
-            'option4' => 'It represented only a small section of Indian society',
+            'question' => 'Who was known as the Frontier Gandhi and led the movement in North-West Frontier Province?',
+            'option1' => 'Lala Lajpat Rai',
+            'option2' => 'Abdul Ghaffar Khan',
+            'option3' => 'Subhas Chandra Bose',
+            'option4' => 'Vallabhbhai Patel',
             'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz44 = Quiz::create([
-            'question' => 'How did folk tales and songs contribute to nationalism?',
-            'option1' => 'They helped revive a sense of cultural pride',
-            'option2' => 'They discouraged local traditions',
-            'option3' => 'They were banned by nationalist leaders',
-            'option4' => 'They were only used by British rulers',
-            'answer' => 1,
-            'timeline' => 4,
-            'points' => 3,
-        ]);
-
-        $quiz45 = Quiz::create([
-            'question' => 'Who painted the famous Bharat Mata image in 1905?',
-            'option1' => 'Rabindranath Tagore',
-            'option2' => 'Abanindranath Tagore',
-            'option3' => 'Raja Ravi Varma',
-            'option4' => 'M.F. Husain',
+            'question' => 'Why did rich peasants such as the Patidars of Gujarat and Jats of Uttar Pradesh participate in the movement?',
+            'option1' => 'To demand a separate electorate',
+            'option2' => 'To protest against high land revenue taxes',
+            'option3' => 'To gain more control over village administration',
+            'option4' => 'To support the British government',
             'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
+        $quiz45 = Quiz::create([
+            'question' => 'Why were poor peasants not fully supportive of the Civil Disobedience Movement?',
+            'option1' => 'Their main demand was the cancellation of unpaid rent',
+            'option2' => 'They were in favor of British rule',
+            'option3' => 'They were not affected by British policies',
+            'option4' => 'They were afraid of being arrested',
+            'answer' => 1,
+            'timeline' => 4,
+            'points' => 3,
+        ]);
+
         $quiz46 = Quiz::create([
-            'question' => 'Which historian and writer compiled and collected folk tales in Tamil Nadu?',
-            'option1' => 'Mahatma Gandhi',
-            'option2' => 'Natesa Sastri',
-            'option3' => 'Abanindranath Tagore',
-            'option4' => 'Subhas Chandra Bose',
+            'question' => 'Why did some Businessmen withdraw their support from the Civil Disobedience Movement?',
+            'option1' => 'They were afraid of British repression',
+            'option2' => 'They feared the movement’s radical nature and workers\' demands',
+            'option3' => 'They believed Gandhi was wrong',
+            'option4' => 'They wanted to form a new Congress party',
             'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz47 = Quiz::create([
+            'question' => 'Why did the working class not participate in large numbers in the Civil Disobedience Movement?',
+            'option1' => 'They supported British rule',
+            'option2' => 'They were not allowed to protest',
+            'option3' => 'The Congress did not include workers’ demands in the movement',
+            'option4' => 'They were given special benefits by the British',
+            'answer' => 3,
+            'timeline' => 4,
+            'points' => 3,
+        ]);
+
+        $quiz51 = Quiz::create([
+            'question' => 'How did nationalism spread among Indians during the freedom movement?',
+            'option1' => 'Through military victories',
+            'option2' => 'Through common cultural symbols and experiences',
+            'option3' => 'By enforcing a single language',
+            'option4' => 'By British encouragement',
+            'answer' => 2,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz52 = Quiz::create([
+            'question' => 'Which novel by Bankim Chandra Chattopadhyay included the song "Vande Mataram"?',
+            'option1' => 'Gitanjali',
+            'option2' => 'Anandamath',
+            'option3' => 'Hind Swaraj',
+            'option4' => 'Discovery of India',
+            'answer' => 2,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz53 = Quiz::create([
+            'question' => 'What was the significance of the Bharat Mata image in nationalism?',
+            'option1' => 'It was used for religious purposes only',
+            'option2' => 'It symbolized unity and national pride',
+            'option3' => 'It was created to support British rule',
+            'option4' => 'It represented only a small section of Indian society',
+            'answer' => 2,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz54 = Quiz::create([
+            'question' => 'How did folk tales and songs contribute to nationalism?',
+            'option1' => 'They helped revive a sense of cultural pride',
+            'option2' => 'They discouraged local traditions',
+            'option3' => 'They were banned by nationalist leaders',
+            'option4' => 'They were only used by British rulers',
+            'answer' => 1,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz55 = Quiz::create([
+            'question' => 'Who painted the famous Bharat Mata image in 1905?',
+            'option1' => 'Rabindranath Tagore',
+            'option2' => 'Abanindranath Tagore',
+            'option3' => 'Raja Ravi Varma',
+            'option4' => 'M.F. Husain',
+            'answer' => 2,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz56 = Quiz::create([
+            'question' => 'Which historian and writer compiled and collected folk tales in Tamil Nadu?',
+            'option1' => 'Mahatma Gandhi',
+            'option2' => 'Natesa Sastri',
+            'option3' => 'Abanindranath Tagore',
+            'option4' => 'Subhas Chandra Bose',
+            'answer' => 2,
+            'timeline' => 5,
+            'points' => 3,
+        ]);
+
+        $quiz57 = Quiz::create([
             'question' => 'Which two symbols were included in the first nationalist tricolor flag of India (1905)?',
             'option1' => 'Lion and Elephant',
             'option2' => 'Spinning wheel and Lotus',
             'option3' => 'Crescent Moon and Eight Lotuses',
             'option4' => 'Peacock and Ashoka Chakra',
             'answer' => 3,
-            'timeline' => 4,
+            'timeline' => 5,
             'points' => 3,
         ]);
 
-        // $quiz = Quiz::create([
+        // $quiz5 = Quiz::create([
         //     'question' => '',
         //     'option1' => '',
         //     'option2' => '',
         //     'option3' => '',
         //     'option4' => '',
-        //     'answer' => 3,
-        //     'timeline' => 4,
+        //     'answer' => 2,
+        //     'timeline' => 5,
         //     'points' => 3,
         // ]);
 
@@ -355,7 +432,7 @@ class DatabaseSeeder extends Seeder
             'video_name' => 'olabs1',
             'char_name' => 'main-character',
             'side_char_name' => 'side-character.png',
-            'bg_name' => 'fountain.jpg',
+            'bg_name' => 'event1.png',
             'year' => 1947,
         ]);
 
@@ -372,7 +449,7 @@ class DatabaseSeeder extends Seeder
             'video_name' => 'olabs2',
             'char_name' => 'main-character',
             'side_char_name' => 'side-character.png',
-            'bg_name' => 'fountain.jpg',
+            'bg_name' => 'event2.png',
             'year' => 1947,
         ]);
 
@@ -389,7 +466,7 @@ class DatabaseSeeder extends Seeder
             'video_name' => 'olabs3',
             'char_name' => 'main-character',
             'side_char_name' => 'side-character.png',
-            'bg_name' => 'fountain.jpg',
+            'bg_name' => 'event3.png',
             'year' => 1947,
         ]);
 
@@ -406,23 +483,43 @@ class DatabaseSeeder extends Seeder
             'video_name' => 'olabs4',
             'char_name' => 'main-character',
             'side_char_name' => 'side-character.png',
-            'bg_name' => 'fountain.jpg',
+            'bg_name' => 'event4.png',
             'year' => 1947,
         ]);
 
-        // $event = Event::create([
-        //     'timeline' => 1,
-        //     'q1_id' => 1,
-        //     'q2_id' => 1,
-        //     'q3_id' => 1,
-        //     'q4_id' => 1,
-        //     'q5_id' => 1,
-        //     'q6_id' => 1,
-        //     'q7_id' => 1,
-        //     'points_required' => 0,
-        //     'video_name' => 'olabs1',
-        //     'year' => 1947,
-        // ]);
+        $event5 = Event::create([
+            'timeline' => 5,
+            'q1_id' => 29,
+            'q2_id' => 30,
+            'q3_id' => 31,
+            'q4_id' => 32,
+            'q5_id' => 33,
+            'q6_id' => 34,
+            'q7_id' => 35,
+            'points_required' => 52,
+            'video_name' => 'olabs5',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'event5.png',
+            'year' => 1947,
+        ]);
+
+        $event6 = Event::create([
+            'timeline' => 6,
+            'q1_id' => 36,
+            'q2_id' => 37,
+            'q3_id' => 38,
+            'q4_id' => 39,
+            'q5_id' => 40,
+            'q6_id' => 41,
+            'q7_id' => 42,
+            'points_required' => 0,
+            'video_name' => 'olabs6',
+            'char_name' => 'main-character',
+            'side_char_name' => 'side-character.png',
+            'bg_name' => 'event5.png',
+            'year' => 1947,
+        ]);
 
         // Insert a student record
         // Student::create([

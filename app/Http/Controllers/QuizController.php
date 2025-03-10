@@ -71,7 +71,7 @@ class QuizController extends Controller
         Session::put('student_score', $student->score);
         Session::put('student_timeline', $student->timeline);
 
-        return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
+        return view('game.levels', ['timeline' => $student->timeline, 'char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
     }
 
     public function continue()
@@ -99,13 +99,15 @@ class QuizController extends Controller
                 $student->save();
             }
 
+            $event = Event::where('timeline', $student->timeline)->first();
+
             // Store the student ID in the session (it will overwrite if already exists)
             Session::put('student_id', $student->id);
             Session::put('student_score', $student->score);
             Session::put('student_timeline', $student->timeline);
 
             // return view('game.levels', ['student' => $student]);
-            return view('game.levels', ['char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
+            return view('game.levels', ['timeline' => $student->timeline, 'char_name' => $event->char_name, 'side_char_name' => $event->side_char_name, 'bg_name' => $event->bg_name]);
         }
         else
         {
@@ -199,8 +201,17 @@ public function quiz($question_no)
 
     public function rest(Request $request)
     {
-        $student_score = Session::get('student_score');
+        $student_id = Session::get('student_id');
+        if (!$student_id) {
+            return redirect()->route('home')->with('error', 'Student ID not found in session');
+        }
+
+        $student_score = Session::get('student_score', 0); // Default to 0 if not set
         $student = Student::find(Session::get('student_id'));
+        if (!$student) {
+            return redirect()->route('home')->with('error', 'Student not found');
+        }
+
 // echo "<pre>";
 // print_r($student_score);
 // echo "</pre>";
@@ -210,14 +221,27 @@ public function quiz($question_no)
         $student->save();
 
         $event = Event::where('timeline', $student->timeline)->first();
+        if (!$event) {
+            return redirect()->route('home')->with('error', 'Event not found for this timeline');
+        }
 
-        if($student->timeline > 4)
+
+        if($student->timeline < 5)
         {
             return view('game.rest', ['score' => $student_score, 'char_name' => $event->char_name, 'bg_name' => $event->bg_name]);
         }
         else
         {
-            return redirect(route('home'));
+            Session::put('student_score', 0);
+            Session::put('student_timeline', 1);
+
+            $student->score = 0;
+            $student->timeline = 1;
+            $student->save();
+
+            echo "Congratulations! You have completed the game successfully.<br>";
+            echo "<a href='". route('home', ['dec_timeline' => 2]) ."'>Go to Home</a>";
+            die();
         }
     }
 
