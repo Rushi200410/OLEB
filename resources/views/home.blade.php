@@ -34,8 +34,13 @@
     <div id="rulesModal" class="modal">
         <div class="modal-content">
             <h2>Game Rules</h2>
-            <p>Welcome to Swaraj: Flames of Rebellion. This game is set in the heart of India's struggle for freedom. You will take on the role of a revolutionary leader, making strategic decisions to challenge colonial rule.</p>
-            <p>Plan your strategies carefully, make alliances, and lead your people to independence. The choices you make will shape the outcome of history. Are you ready for the challenge?</p>
+            <p>Welcome to the History: Nationalism in India Quiz Game!</p>
+            <p><p><strong>How to Play:</strong></p>
+<ul>
+  <li>Answer 7 multiple-choice questions per level.</li>
+  <li>Each correct answer earns +3 marks; each wrong answer deducts 1 mark.</li>
+  <li>Use the "Play Again" option to retry a question or "Next Question" to skip.</li>
+</ul></p>
             <button id="closeModal">OK</button>
         </div>
     </div>

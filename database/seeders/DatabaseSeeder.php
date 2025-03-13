@@ -46,62 +46,62 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $quiz12 = Quiz::create([
-            'question' => 'What does the term "Satyagraha" emphasize?',
-            'option1' => 'The use of physical force',
-            'option2' => 'The need for armed struggle',
-            'option3' => 'The power of truth and non-violence',
-            'option4' => 'The importance of economic sanctions',
+            'question' => 'Where did Mahatma Gandhi first organize a Satyagraha movement in India?',
+            'option1' => 'Kheda',
+            'option2' => 'Ahmedabad',
+            'option3' => 'Champaran',
+            'option4' => 'Amritsar',
             'answer' => 3,
             'timeline' => 1,
             'points' => 3,
         ]);
 
         $quiz13 = Quiz::create([
-            'question' => 'Where did Mahatma Gandhi first organize a Satyagraha movement in India?',
-            'option1' => 'Kheda',
-            'option2' => 'Champaran',
-            'option3' => 'Ahmedabad',
-            'option4' => 'Amritsar',
+            'question' => 'The Rowlatt Act (1919) allowed the British government to:',
+            'option1' => 'Grant independence to India',
+            'option2' => 'Detain political prisoners without trial',
+            'option3' => 'Reduce taxes on Indian farmers',
+            'option4' => 'Promote Indian businesses',
             'answer' => 2,
             'timeline' => 1,
             'points' => 3,
         ]);
         $quiz14 = Quiz::create([
-            'question' => 'What was the main issue in the Kheda Satyagraha?',
-            'option1' => 'Oppressive plantation system',
-            'option2' => 'Non-payment of revenue due to crop failure',
-            'option3' => 'Low wages for cotton mill workers',
-            'option4' => 'Forced recruitment in the army',
+            'question' => 'Who was the British officer responsible for the Jallianwala Bagh massacre?',
+            'option1' => 'Lord Irwin',
+            'option2' => 'General Dyer',
+            'option3' => 'Lord Mountbatten',
+            'option4' => 'Sir John Simon',
             'answer' => 2,
             'timeline' => 1,
             'points' => 3,
         ]);
         $quiz15 = Quiz::create([
-            'question' => 'What was the outcome of the Ahmedabad Satyagraha?',
-            'option1' => 'The workers got a pay raise',
-            'option2' => 'The plantation system was abolished',
-            'option3' => 'The revenue collection was relaxed',
-            'option4' => 'The workers went on strike',
+            'question' => 'On which date did the Jallianwala Bagh massacre occur?',
+            'option1' => '13 April 1919',
+            'option2' => '15 August 1919',
+            'option3' => '10 April 1919',
+            'option4' => '6 April 1919',
             'answer' => 1,
             'timeline' => 1,
             'points' => 3,
         ]);
         $quiz16 = Quiz::create([
-            'question' => 'What was the key principle behind Mahatma Gandhi’s concept of Satyagraha?',
-            'option1' => 'Use of physical force',
-            'option2' => 'Military revolution',
-            'option3' => 'Economic warfare',
-            'option4' => 'Non-violent resistance',
+            'question' => 'The Non-Cooperation Movement was launched in response to:',
+            'option1' => 'The partition of Bengal',
+            'option2' => 'The Indian Councils Act',
+            'option3' => 'The Quit India Movement',
+            'option4' => 'The Jallianwala Bagh massacre and Rowlatt Act',
             'answer' => 4,
             'timeline' => 1,
             'points' => 3,
         ]);
         $quiz17 = Quiz::create([
-            'question' => 'What was the primary aim of Satyagraha?',
-            'option1' => 'To instill fear in British rulers',
-            'option2' => 'To defeat British rulers through war',
-            'option3' => 'To persuade the oppressor using truth and non-violence',
-            'option4' => 'To gain political control through elections',
+            'question' => 'The Khilafat Movement was started to protest against:',
+            'option1' => 'The Jallianwala Bagh massacre',
+            'option2' => 'The British salt tax',
+            'option3' => 'The unfair treatment of the Ottoman Empire',
+            'option4' => 'The Rowlatt Act',
             'answer' => 3,
             'timeline' => 1,
             'points' => 3,
@@ -117,63 +117,63 @@ class DatabaseSeeder extends Seeder
             'points' => 3,
         ]);
         $quiz22 = Quiz::create([
-            'question' => 'Which of the following was NOT a part of the Non-Cooperation Movement?',
-            'option1' => 'Boycott of foreign goods',
-            'option2' => 'Refusal to pay taxes',
-            'option3' => 'Resignation from government jobs',
-            'option4' => 'Armed revolt against the British',
+            'question' => 'What was the economic impact of the Non-Cooperation Movement?',
+            'option1' => 'Rise in the price of Indian goods',
+            'option2' => 'Increase in government revenue',
+            'option3' => 'Increase in foreign trade',
+            'option4' => 'Decline in the import of foreign cloth',
             'answer' => 4,
             'timeline' => 2,
             'points' => 3,
         ]);
 
         $quiz23 = Quiz::create([
-            'question' => 'Why did the Non-Cooperation Movement slow down in cities?',
-            'option1' => 'People became disinterested',
-            'option2' => 'The British granted independence',
-            'option3' => 'Khadi was expensive and alternative Indian institutions were lacking',
-            'option4' => 'British police suppressed all protests',
+            'question' => 'Who led the peasant movement in Awadh?',
+            'option1' => 'Bhagat Singh',
+            'option2' => 'Rajendra Prasad',
+            'option3' => 'Baba Ramchandra',
+            'option4' => 'Alluri Sitarama Raju',
             'answer' => 3,
             'timeline' => 2,
             'points' => 3,
         ]);
         $quiz24 = Quiz::create([
-            'question' => 'In which province did the Justice Party participate in elections during the Non-Cooperation Movement?',
-            'option1' => 'Bengal',
-            'option2' => 'Madras',
-            'option3' => 'Punjab',
-            'option4' => 'Gujarat',
+            'question' => 'Alluri Sitarama Raju was a leader in:',
+            'option1' => 'Punjab',
+            'option2' => 'Andhra Pradesh',
+            'option3' => 'Bihar',
+            'option4' => 'Bengal',
             'answer' => 2,
             'timeline' => 2,
             'points' => 3,
         ]);
         $quiz25 = Quiz::create([
-            'question' => 'Which class mainly participated in the movement in urban areas?',
-            'option1' => 'Farmers',
-            'option2' => 'Businessmen',
-            'option3' => 'Middle-class professionals',
-            'option4' => 'Factory workers',
+            'question' => 'Which law restricted the movement of plantation workers in Assam?',
+            'option1' => 'Rowlatt Act',
+            'option2' => 'Simon Commission Act',
+            'option3' => 'Inland Emigration Act',
+            'option4' => 'Government of India Act, 1919',
             'answer' => 3,
             'timeline' => 2,
             'points' => 3,
         ]);
         $quiz26 = Quiz::create([
-            'question' => 'What was the economic impact of the Non-Cooperation Movement?',
-            'option1' => 'Increase in foreign trade',
-            'option2' => 'Decline in the import of foreign cloth',
-            'option3' => 'Rise in the price of Indian goods',
-            'option4' => 'Increase in government revenue',
+            'question' => 'What did freedom mean for the plantation workers in Assam?',
+            'option1' => 'Higher wages',
+            'option2' => 'Right to move freely in and out of the plantations',
+            'option3' => 'Land redistribution',
+            'option4' => 'Abolition of the zamindari system',
             'answer' => 2,
             'timeline' => 2,
             'points' => 3,
         ]);
         $quiz27 = Quiz::create([
-            'question' => 'Why did the movement in the cities gradually slow down?',
-            'option1' => 'Lack of leadership',
-            'option2' => 'High cost of Khadi cloth',
-            'option3' => 'Repression by the British',
-            'option4' => 'Lack of interest among the people',
-            'answer' => 2,
+            'question' => 'What was the main issue faced by the plantation workers under the Inland Emigration Act of 1859?',
+            'option1' => 'Low wages',
+            'option2' => 'Forced recruitment',
+            'option3' => 'Restrictions on movement',
+            'option4' => 'High rents',
+            'answer' => 3,
             'timeline' => 2,
             'points' => 3,
         ]);
@@ -198,11 +198,11 @@ class DatabaseSeeder extends Seeder
             'points' => 3,
         ]);
         $quiz33 = Quiz::create([
-            'question' => 'What was the distance covered by Mahatma Gandhi and his followers during the Salt March?',
-            'option1' => '150 km',
-            'option2' => '240 miles (385 km)',
-            'option3' => '100 miles (160 km)',
-            'option4' => '500 miles (800 km)',
+            'question' => 'What was the reaction of the British government to the Civil Disobedience Movement?',
+            'option1' => 'They ignored the protests',
+            'option2' => 'They arrested thousands of leaders and activists',
+            'option3' => 'They reduced the salt tax',
+            'option4' => 'They granted India independence immediately',
             'answer' => 2,
             'timeline' => 3,
             'points' => 3,
@@ -218,110 +218,110 @@ class DatabaseSeeder extends Seeder
             'points' => 3,
         ]);
         $quiz35 = Quiz::create([
-            'question' => 'What was the reaction of the British government to the Civil Disobedience Movement?',
-            'option1' => 'They ignored the protests',
-            'option2' => 'They granted India independence immediately',
-            'option3' => 'They arrested thousands of leaders and activists',
-            'option4' => 'They reduced the salt tax',
+            'question' => 'Who was known as the Frontier Gandhi and led the movement in North-West Frontier Province?',
+            'option1' => 'Subhas Chandra Bose',
+            'option2' => 'Lala Lajpat Rai',
+            'option3' => 'Abdul Ghaffar Khan',
+            'option4' => 'Vallabhbhai Patel',
             'answer' => 3,
             'timeline' => 3,
             'points' => 3,
         ]);
 
         $quiz36 = Quiz::create([
-            'question' => 'What happened on 6 April 1930 at Dandi?',
-            'option1' => 'The first Round Table Conference was held',
-            'option2' => 'Gandhi and his followers manufactured salt illegally',
-            'option3' => 'The Quit India Movement was launched',
-            'option4' => 'The Indian National Congress declared Purna Swaraj',
-            'answer' => 2,
-            'timeline' => 3,
-            'points' => 3,
-        ]);
-
-        $quiz37 = Quiz::create([
-            'question' => 'Which of the following was NOT a form of protest used during the Civil Disobedience Movement?',
-            'option1' => 'Refusal to pay taxes',
-            'option2' => 'Picketing liquor and foreign cloth shops',
-            'option3' => 'Armed rebellion against the British',
-            'option4' => 'Violation of forest laws',
-            'answer' => 3,
-            'timeline' => 3,
-            'points' => 3,
-        ]);
-
-        $quiz41 = Quiz::create([
-            'question' => 'What was the main symbol used by Mahatma Gandhi to unite the nation during the Civil Disobedience Movement?',
-            'option1' => 'Khadi',
-            'option2' => 'Salt',
-            'option3' => 'Spinning wheel',
-            'option4' => 'Tricolour flag',
-            'answer' => 2,
-            'timeline' => 4,
-            'points' => 3,
-        ]);
-
-        $quiz42 = Quiz::create([
-            'question' => 'What was the main reason for the British government\'s brutal repression during the Civil Disobedience Movement?',
-            'option1' => 'To suppress the movement',
-            'option2' => 'To negotiate with the Congress',
-            'option3' => 'To gain support from the people',
-            'option4' => 'To abolish the salt tax',
-            'answer' => 1,
-            'timeline' => 4,
-            'points' => 3,
-        ]);
-
-        $quiz43 = Quiz::create([
-            'question' => 'Who was known as the Frontier Gandhi and led the movement in North-West Frontier Province?',
-            'option1' => 'Lala Lajpat Rai',
-            'option2' => 'Abdul Ghaffar Khan',
-            'option3' => 'Subhas Chandra Bose',
-            'option4' => 'Vallabhbhai Patel',
-            'answer' => 2,
-            'timeline' => 4,
-            'points' => 3,
-        ]);
-
-        $quiz44 = Quiz::create([
             'question' => 'Why did rich peasants such as the Patidars of Gujarat and Jats of Uttar Pradesh participate in the movement?',
             'option1' => 'To demand a separate electorate',
             'option2' => 'To protest against high land revenue taxes',
             'option3' => 'To gain more control over village administration',
             'option4' => 'To support the British government',
             'answer' => 2,
+            'timeline' => 3,
+            'points' => 3,
+        ]);
+
+        $quiz37 = Quiz::create([
+            'question' => 'What was the attitude of Indian merchants and industrialists towards the Civil Disobedience Movement?',
+            'option1' => 'They fully supported it and provided financial aid',
+            'option2' => 'They opposed the movement to protect their businesses',
+            'option3' => 'They were indifferent to the movement',
+            'option4' => 'They formed their own political party',
+            'answer' => 1,
+            'timeline' => 3,
+            'points' => 3,
+        ]);
+
+        $quiz41 = Quiz::create([
+            'question' => 'Why did the working class not participate in large numbers in the Civil Disobedience Movement?',
+            'option1' => 'They supported British rule',
+            'option2' => 'They were not allowed to protest',
+            'option3' => 'The Congress did not include workers’ demands in the movement',
+            'option4' => 'They were given special benefits by the British',
+            'answer' => 3,
+            'timeline' => 4,
+            'points' => 3,
+        ]);
+
+        $quiz42 = Quiz::create([
+            'question' => 'Why did Dalits (untouchables) not participate widely in the Civil Disobedience Movement?',
+            'option1' => 'Congress did not focus on their specific concerns',
+            'option2' => 'They supported British rule',
+            'option3' => 'They had no interest in politics',
+            'option4' => 'They were financially strong and unaffected',
+            'answer' => 1,
+            'timeline' => 4,
+            'points' => 3,
+        ]);
+
+        $quiz43 = Quiz::create([
+            'question' => 'Who led the Dalit movement and demanded separate electorates for Dalits?',
+            'option1' => 'Mahatma Gandhi',
+            'option2' => 'Dr. B.R. Ambedkar',
+            'option3' => 'Jawaharlal Nehru',
+            'option4' => 'Subhas Chandra Bose',
+            'answer' => 2,
+            'timeline' => 4,
+            'points' => 3,
+        ]);
+
+        $quiz44 = Quiz::create([
+            'question' => 'What was the outcome of the Poona Pact (1932) between Gandhi and Ambedkar?',
+            'option1' => 'Separate electorates were granted to Dalits',
+            'option2' => 'Dalits were given reserved seats in legislatures under joint electorates',
+            'option3' => 'Gandhi refused to negotiate',
+            'option4' => 'British rule ended',
+            'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz45 = Quiz::create([
-            'question' => 'Why were poor peasants not fully supportive of the Civil Disobedience Movement?',
-            'option1' => 'Their main demand was the cancellation of unpaid rent',
-            'option2' => 'They were in favor of British rule',
-            'option3' => 'They were not affected by British policies',
-            'option4' => 'They were afraid of being arrested',
+            'question' => 'Why did Muslims not fully support the Civil Disobedience Movement?',
+            'option1' => 'They feared Hindu domination in a free India',
+            'option2' => 'They were not interested in politics',
+            'option3' => 'They were given special rights by the British',
+            'option4' => 'Gandhi refused to include them',
             'answer' => 1,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz46 = Quiz::create([
-            'question' => 'Why did some Businessmen withdraw their support from the Civil Disobedience Movement?',
-            'option1' => 'They were afraid of British repression',
-            'option2' => 'They feared the movement’s radical nature and workers\' demands',
-            'option3' => 'They believed Gandhi was wrong',
-            'option4' => 'They wanted to form a new Congress party',
+            'question' => 'Who among the following was a strong advocate for a separate Muslim nation?',
+            'option1' => 'Subhas Chandra Bose',
+            'option2' => 'Muhammad Iqbal',
+            'option3' => 'Bhagat Singh',
+            'option4' => 'Vallabhbhai Patel',
             'answer' => 2,
             'timeline' => 4,
             'points' => 3,
         ]);
 
         $quiz47 = Quiz::create([
-            'question' => 'Why did the working class not participate in large numbers in the Civil Disobedience Movement?',
-            'option1' => 'They supported British rule',
-            'option2' => 'They were not allowed to protest',
-            'option3' => 'The Congress did not include workers’ demands in the movement',
-            'option4' => 'They were given special benefits by the British',
+            'question' => 'Which event marked a major turning point in Hindu-Muslim relations in India?',
+            'option1' => 'Formation of the Swaraj Party',
+            'option2' => 'Poona Pact',
+            'option3' => 'Collapse of the Hindu-Muslim unity after the Khilafat Movement',
+            'option4' => 'Formation of the Indian National Congress',
             'answer' => 3,
             'timeline' => 4,
             'points' => 3,
@@ -339,11 +339,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $quiz52 = Quiz::create([
-            'question' => 'Which novel by Bankim Chandra Chattopadhyay included the song "Vande Mataram"?',
-            'option1' => 'Gitanjali',
-            'option2' => 'Anandamath',
-            'option3' => 'Hind Swaraj',
-            'option4' => 'Discovery of India',
+            'question' => 'Who painted the famous Bharat Mata image in 1905?',
+            'option1' => 'Rabindranath Tagore',
+            'option2' => 'Abanindranath Tagore',
+            'option3' => 'Raja Ravi Varma',
+            'option4' => 'M.F. Husain',
             'answer' => 2,
             'timeline' => 5,
             'points' => 3,
@@ -372,12 +372,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $quiz55 = Quiz::create([
-            'question' => 'Who painted the famous Bharat Mata image in 1905?',
-            'option1' => 'Rabindranath Tagore',
-            'option2' => 'Abanindranath Tagore',
-            'option3' => 'Raja Ravi Varma',
-            'option4' => 'M.F. Husain',
-            'answer' => 2,
+            'question' => 'Why did some non-Hindus feel excluded from nationalist symbols?',
+            'option1' => 'Nationalist symbols often had Hindu religious imagery',
+            'option2' => 'The British forced them to reject nationalism',
+            'option3' => 'They were not interested in Indian independence',
+            'option4' => 'They only participated in economic movements',
+            'answer' => 1,
             'timeline' => 5,
             'points' => 3,
         ]);

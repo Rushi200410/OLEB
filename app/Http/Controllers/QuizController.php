@@ -53,14 +53,14 @@ class QuizController extends Controller
         if ($student) {
             // If the student exists, update the score and timeline to 0
             $student->score = 0;
-            $student->timeline = 1;
+            $student->timeline =  5;
             $student->save();
         } else {
             // If no student exists, create a new record
             $student = new Student();
             $student->user_id = $userid;
             $student->score = 0;
-            $student->timeline = 1;
+            $student->timeline = 5;
             $student->save();
         }
 
